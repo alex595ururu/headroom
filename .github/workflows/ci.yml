@@ -50,6 +50,34 @@ jobs:
           pip install -e ".[dev]"
           python -c "from headroom._core import DiffCompressor; print('headroom._core OK:', DiffCompressor)"
 
+      # Memory/relevance tests embed text via fastembed (which pulls
+      # qdrant/bge-small-en-v1.5-onnx-q from HuggingFace on first use). CI used
+      # to hit HF live inside every test, so transient HF outages failed dozens
+      # of memory tests with "couldn't connect to huggingface.co". Pin
+      # fastembed's cache to a stable dir, cache it across runs, and pre-fetch it
+      # once (with retries) so the tests run offline against the cache. The key
+      # is static (per model), so main warms the cache for every branch/run.
+      - name: Configure fastembed cache dir
+        run: echo "FASTEMBED_CACHE_PATH=$HOME/.cache/fastembed" >> "$GITHUB_ENV"
+
+      - name: Cache embedding model (fastembed)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/fastembed
+          key: ${{ runner.os }}-fastembed-bge-small-en-v1.5-onnx-q-v1
+
+      - name: Pre-fetch embedding model (resilient to HF flakiness)
+        run: |
+          for i in 1 2 3 4 5; do
+            if python -c "from fastembed import TextEmbedding; TextEmbedding('BAAI/bge-small-en-v1.5'); print('embedding model ready')"; then
+              exit 0
+            fi
+            echo "::warning::fastembed model fetch attempt $i failed; retrying in 20s"
+            sleep 20
+          done
+          echo "::error::could not fetch the embedding model from HuggingFace after 5 attempts"
+          exit 1
+
       - name: Run linting
         if: matrix.python-version == '3.12'
         run: |
