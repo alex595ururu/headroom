@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.25.0](https://github.com/alex595ururu/headroom/compare/v0.24.0...v0.25.0) (2026-06-10)
+
+
+### Features
+
+* add differential network capture harness ([#761](https://github.com/alex595ururu/headroom/issues/761)) ([11ab5f8](https://github.com/alex595ururu/headroom/commit/11ab5f83a1ccd617a2608349a42feff7f7e72b98))
+* add Vertex AI proxy routing ([#793](https://github.com/alex595ururu/headroom/issues/793)) ([3c77e52](https://github.com/alex595ururu/headroom/commit/3c77e52ce431210e6045671cf5f7c66c79f90a32))
+* **proxy:** attribute savings history rollups per provider ([#791](https://github.com/alex595ururu/headroom/issues/791)) ([0b8b8d9](https://github.com/alex595ururu/headroom/commit/0b8b8d92de3bd5e0301eadedacfb4b1d20a8de7f))
+* support Python 3.14+ via pyo3 abi3 stable ABI ([#516](https://github.com/alex595ururu/headroom/issues/516)) ([19eac8e](https://github.com/alex595ururu/headroom/commit/19eac8e00dc9e3911f3afe8e8e5dcc9e00346baa))
+* switch Kompress default to kompress-v2-base with weight-only int8 ONNX ([#799](https://github.com/alex595ururu/headroom/issues/799)) ([74392b2](https://github.com/alex595ururu/headroom/commit/74392b238e4f76fa061e673d1415fc7fa2830011))
+
+
+### Bug Fixes
+
+* **ci:** pin cosign-installer to v3 (v4 does not exist) ([#774](https://github.com/alex595ururu/headroom/issues/774)) ([199d693](https://github.com/alex595ururu/headroom/commit/199d693f98ecd72d80181c8fee8422b6b64651a2))
+* **content_router:** guard against empty compression output causing Anthropic 400 ([#771](https://github.com/alex595ururu/headroom/issues/771)) ([2f9ff07](https://github.com/alex595ururu/headroom/commit/2f9ff07e6caef0fe32d00ece6266a476eecff5a3))
+* **dashboard:** stable 'Proxy $ Saved' hero tile under --workers &gt; 1 ([#481](https://github.com/alex595ururu/headroom/issues/481)) ([fd73b88](https://github.com/alex595ururu/headroom/commit/fd73b88368b22beeb586b8e1aa37fcd2afb12532))
+* don't inject empty tools:[] when client omitted the tools field ([#772](https://github.com/alex595ururu/headroom/issues/772)) ([574bbae](https://github.com/alex595ururu/headroom/commit/574bbae2cbe2f20b3f0e12b421c25ac256712f0a))
+* **proxy:** F4 — trust X-Forwarded-* only behind allow-listed gateway ([d10bd5f](https://github.com/alex595ururu/headroom/commit/d10bd5f59c5a36e14f6c5f0480b821532521b753))
+* **proxy:** lazy-import server to avoid fastapi crash ([#442](https://github.com/alex595ururu/headroom/issues/442)) ([93c6937](https://github.com/alex595ururu/headroom/commit/93c69372e614f2b04873bed75602a88d2256a7fc))
+* **proxy:** restore Codex usage headers on WS and streaming SSE transports ([#577](https://github.com/alex595ururu/headroom/issues/577)) ([#794](https://github.com/alex595ururu/headroom/issues/794)) ([0ce68de](https://github.com/alex595ururu/headroom/commit/0ce68dedd770d5411d16abe30e5ea9dd0b7d8eee))
+* schema compaction must not drop property names that match DROP_KEYS ([#785](https://github.com/alex595ururu/headroom/issues/785)) ([ae2122f](https://github.com/alex595ururu/headroom/commit/ae2122fda8ff0efc03d609d27270453fea3a8718))
+* **ssl:** upstream httpx client inherits SSL_CERT_FILE, REQUESTS_CA_BUNDLE, NODE_EXTRA_CA_CERTS ([#745](https://github.com/alex595ururu/headroom/issues/745)) ([e50fbb3](https://github.com/alex595ururu/headroom/commit/e50fbb3e0d61d561456d7b0ff9e0a8ee106a2f02))
+
+
+### Code Refactoring
+
+* extract litellm model resolution to shared utility ([ec7d006](https://github.com/alex595ururu/headroom/commit/ec7d0065cc5055e504e79cf24f3951e404fe4cb9))
+
 ## [0.24.0](https://github.com/chopratejas/headroom/compare/v0.23.0...v0.24.0) (2026-06-08)
 
 
